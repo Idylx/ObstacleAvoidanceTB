@@ -17,7 +17,7 @@ ap.add_argument('--connect', default='127.0.0.1:14550',
         help="address of to connect")
 args = vars(ap.parse_args())
 
-
+""""main that handle the logic"""
 def main():
     treeRecognition.setupArgument(args["yolo"], args["confidence"], args["threshold"])
     vehicle = droneHelper.connection(args["connect"], 921900)
@@ -25,10 +25,6 @@ def main():
         droneHelper.derive(vehicle)
     if treeRecognition.activateRecognition() == "STOP":
         droneHelper.stop(vehicle)
-
-
-
-
 
 
 if __name__ == "__main__":

@@ -138,6 +138,7 @@ def activateRecognition():
                                 r = (x, y) / (H, W)
 
                                 if r > 0.5:
+                                        print('SOMETHING FOUND STOP')
                                         return "STOP"
 
                                 color = [int(c) for c in _COLORS[classIDs[i]]]
