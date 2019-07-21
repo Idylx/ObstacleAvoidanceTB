@@ -137,7 +137,7 @@ def activateRecognition():
                                 # calcuate ratio of box
                                 r = (x, y) / (H, W)
 
-                                if r > 0.5:
+                                if r > 0.3:
                                         print('SOMETHING FOUND STOP')
                                         return "STOP"
 
