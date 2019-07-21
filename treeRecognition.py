@@ -30,7 +30,14 @@ _threshold = 0
 
 
 """ setup the options of the recognitiom"""
-def setupArgument(yoloRep, confidence, threshold):
+def setupArgument():
+        return None
+
+# get image function
+def get_image():
+    return _camera.read()[1]
+
+def activateRecognition(yoloRep, confidence, threshold):
         _confidence = confidence
         _threshold = threshold
 
@@ -41,7 +48,7 @@ def setupArgument(yoloRep, confidence, threshold):
         # initialize a list of colors to represent each possible class label
         np.random.seed(42)
         _COLORS = np.random.randint(0, 255, size=(len(_LABELS), 3),
-                                   dtype="uint8")
+                                    dtype="uint8")
 
         # derive the paths to the YOLO weights and model configuration
         weightsPath = os.path.sep.join([yoloRep, "yolov3-tiny-obj_final.weights"])
@@ -54,13 +61,6 @@ def setupArgument(yoloRep, confidence, threshold):
         # load the camera and add settings
         _camera.set(3, 640)
         _camera.set(4, 480)
-
-
-# get image function
-def get_image():
-    return _camera.read()[1]
-
-def activateRecognition():
         while True:
                 # load our input image and grab its spatial dimensions
                 frame = get_image()

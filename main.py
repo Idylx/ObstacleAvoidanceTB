@@ -17,13 +17,13 @@ args = vars(ap.parse_args())
 
 """"main that handle the logic"""
 def main():
-    treeRecognition.setupArgument(args["yolo"], args["confidence"], args["threshold"])
+
     vehicle = droneHelper.connection(args["connect"], 921600)
 
 
     if vehicle.mode.name == "OFFBOARD":
         droneHelper.derive(vehicle)
-    if treeRecognition.activateRecognition() == "STOP":
+    if treeRecognition.activateRecognition(args["yolo"], args["confidence"], args["threshold"]) == "STOP":
         droneHelper.stop(vehicle)
 
     # About to exit script
