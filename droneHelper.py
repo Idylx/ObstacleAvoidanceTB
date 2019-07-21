@@ -2,20 +2,17 @@ from dronekit import connect, VehicleMode, LocationGlobalRelative
 from pymavlink import mavutil
 import time
 import socket
-import exceptions
-
 
 """connection to vehicle"""
-def connection(addr, baud):
+def connection(addr, baudConnection):
     try:
         # Connect to the Vehicle
         print('Connecting to vehicle on: %s' % addr)
-        vehicle = connect(addr, baud, wait_ready=True)
+        vehicle = connect(addr, wait_ready=True, baud=baudConnection)
         return vehicle
     # Bad TCP connection
     except socket.error:
         print("'No server exists!'")
-
 
     # Bad TTY connection
     except exceptions.OSError as e:
