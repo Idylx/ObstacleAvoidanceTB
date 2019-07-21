@@ -132,10 +132,12 @@ def activateRecognition(yoloRep, confidence, threshold):
                                 (w, h) = (boxes[i][2], boxes[i][3])
 
                                 # draw a bounding box rectangle and label on the image
-                                print("I found something")
+
 
                                 # calcuate ratio of box
-                                r = (w, h) / (H, W)
+                                r = (w*h) / (H*W)
+
+                                print("w: " + w + " h: " + h+" R : "+r)
 
                                 if r > 0.3:
                                         print("SOMETHING FOUND STOP")
