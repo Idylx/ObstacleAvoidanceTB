@@ -28,11 +28,13 @@ def connection(addr, baudConnection):
 
 """derive the vehicle at a speed arbitrary of 0.5"""
 def derive(vehicle):
-    print('Check mode')
 
+
+    """
+    print('Check mode')
     if vehicle.mode != "OFFBOARD":
         print('Vehicule not in offboard, stay on stabilze')
-        vehicle.mode = VehicleMode("STABILIZE")
+        vehicle.mode = VehicleMode("STABILIZE")"""
 
     print('Begin to derive gently')
 
