@@ -141,6 +141,8 @@ def activateRecognition(yoloRep, confidence, threshold):
 
                                 if r > 0.2:
                                         print("SOMETHING FOUND STOP")
+                                        # show the output image
+                                        cv2.imwrite("predictionSTOP.png", image)
                                         return "STOP"
 
                                 color = [int(c) for c in _COLORS[classIDs[i]]]
@@ -148,7 +150,6 @@ def activateRecognition(yoloRep, confidence, threshold):
                                 text = "{}: {:.4f}".format(_LABELS[classIDs[i]], confidences[i])
                                 cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,
                                             0.5, color, 2)
-                # show the output image
-                cv2.imwrite("prediction.png", image)
+
                 #cv2.imshow('pred', image)
                 #key = cv2.waitKey(5)
