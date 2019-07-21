@@ -7,9 +7,9 @@ import treeRecognition
 ap = argparse.ArgumentParser()
 ap.add_argument("-y", "--yolo", required=True,
         help="base path to YOLO directory")
-ap.add_argument("-c", "--confidence", type=float, default=0.1,
+ap.add_argument("-c", "--confidence", type=float, default=0.05,
         help="minimum probability to filter weak detections")
-ap.add_argument("-t", "--threshold", type=float, default=0.3,
+ap.add_argument("-t", "--threshold", type=float, default=0.2,
         help="threshold when applyong non-maxima suppression")
 ap.add_argument('--connect', default='/dev/ttyAMA0',
         help="address of to connect")
