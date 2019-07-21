@@ -20,10 +20,10 @@ sys.path.append('~/yolo/lib/python3.5/site-packages')
 
 
 #variables
-_net = ""
+_net = None
 _camera = cv2.VideoCapture(0)
-_LABELS = ""
-_COLORS = ""
+_LABELS = None
+_COLORS = None
 _confidence = 0
 _threshold = 0
 
