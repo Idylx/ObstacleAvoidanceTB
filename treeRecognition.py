@@ -21,7 +21,7 @@ sys.path.append('~/yolo/lib/python3.5/site-packages')
 
 #variables
 _net = ""
-_camera = ""
+_camera = cv2.VideoCapture(0)
 _LABELS = ""
 _COLORS = ""
 _confidence = 0
@@ -36,11 +36,11 @@ def setupArgument(yoloRep, confidence, threshold):
 
         # load the COCO class labels our YOLO model was trained on
         labelsPath = os.path.sep.join([yoloRep, "obj.names"])
-        LABELS = open(labelsPath).read().strip().split("\n")
+        _LABELS = open(labelsPath).read().strip().split("\n")
 
         # initialize a list of colors to represent each possible class label
         np.random.seed(42)
-        _COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
+        _COLORS = np.random.randint(0, 255, size=(len(_LABELS), 3),
                                    dtype="uint8")
 
         # derive the paths to the YOLO weights and model configuration
@@ -52,7 +52,6 @@ def setupArgument(yoloRep, confidence, threshold):
         _net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 
         # load the camera and add settings
-        _camera = cv2.VideoCapture(0)
         _camera.set(3, 640)
         _camera.set(4, 480)
 
