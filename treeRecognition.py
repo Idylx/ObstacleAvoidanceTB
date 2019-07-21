@@ -137,9 +137,9 @@ def activateRecognition(yoloRep, confidence, threshold):
                                 # calcuate ratio of box
                                 r = (w*h) / (H*W)
 
-                                print("w: " + str(w) + " h: " + str(h)+" R : "+str(r))
+                                #print("w: " + str(w) + " h: " + str(h)+" R : "+str(r))
 
-                                if r > 0.3:
+                                if r > 0.2:
                                         print("SOMETHING FOUND STOP")
                                         return "STOP"
 
