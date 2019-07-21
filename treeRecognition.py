@@ -49,12 +49,12 @@ def setupArgument(yoloRep, confidence, threshold):
 
         # load our YOLO object detector trained on COCO dataset (80 classes)
         print("[INFO] loading YOLO from disk...")
-        net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
+        _net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 
         # load the camera and add settings
-        camera = cv2.VideoCapture(0)
-        camera.set(3, 640)
-        camera.set(4, 480)
+        _camera = cv2.VideoCapture(0)
+        _camera.set(3, 640)
+        _camera.set(4, 480)
 
 
 # get image function
@@ -148,5 +148,5 @@ def activateRecognition():
                                             0.5, color, 2)
                 # show the output image
                 cv2.imwrite("prediction.png", image)
-                cv2.imshow('pred', image)
-                key = cv2.waitKey(5)
+                #cv2.imshow('pred', image)
+                #key = cv2.waitKey(5)

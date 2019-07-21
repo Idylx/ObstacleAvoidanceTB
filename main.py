@@ -11,7 +11,7 @@ ap.add_argument("-c", "--confidence", type=float, default=0.1,
         help="minimum probability to filter weak detections")
 ap.add_argument("-t", "--threshold", type=float, default=0.3,
         help="threshold when applyong non-maxima suppression")
-ap.add_argument('--connect', default='/dev/ttyACA0',
+ap.add_argument('--connect', default='/dev/ttyAMA0',
         help="address of to connect")
 args = vars(ap.parse_args())
 
@@ -19,6 +19,7 @@ args = vars(ap.parse_args())
 def main():
     treeRecognition.setupArgument(args["yolo"], args["confidence"], args["threshold"])
     vehicle = droneHelper.connection(args["connect"], 921600)
+
 
     if vehicle.mode.name == "OFFBOARD":
         droneHelper.derive(vehicle)

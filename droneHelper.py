@@ -12,7 +12,7 @@ def connection(addr, baudConnection):
         return vehicle
     # Bad TCP connection
     except socket.error:
-        print("'No server exists!'")
+        print("'No vehicle exists!'")
 
     # Bad TTY connection
     except exceptions.OSError as e:
