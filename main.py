@@ -19,9 +19,8 @@ args = vars(ap.parse_args())
 def main():
 
     vehicle = droneHelper.connection(args["connect"], 921600)
-
-
     #if vehicle.mode.name == "OFFBOARD":
+
     droneHelper.derive(vehicle)
     if treeRecognition.activateRecognition(args["yolo"], args["confidence"], args["threshold"]) == "STOP":
         droneHelper.stop(vehicle)
