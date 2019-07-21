@@ -133,11 +133,18 @@ def activateRecognition(yoloRep, confidence, threshold):
 
                                 # draw a bounding box rectangle and label on the image
 
+                                color = [int(c) for c in _COLORS[classIDs[i]]]
+                                cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
+                                text = "{}: {:.4f}".format(_LABELS[classIDs[i]], confidences[i])
+                                cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,
+                                            0.5, color, 2)
 
                                 # calcuate ratio of box
                                 r = (w*h) / (H*W)
 
                                 print("w: " + str(w) + " h: " + str(h)+" R : "+str(r))
+
+                                cv2.imwrite("./pred/prediction"+str(r)+".png", image)
 
                                 if r > 0.2:
                                         print("SOMETHING FOUND STOP")
@@ -145,11 +152,6 @@ def activateRecognition(yoloRep, confidence, threshold):
                                         cv2.imwrite("predictionSTOP.png", image)
                                         return "STOP"
 
-                                color = [int(c) for c in _COLORS[classIDs[i]]]
-                                cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
-                                text = "{}: {:.4f}".format(_LABELS[classIDs[i]], confidences[i])
-                                cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,
-                                            0.5, color, 2)
 
                 #cv2.imshow('pred', image)
                 #key = cv2.waitKey(5)
