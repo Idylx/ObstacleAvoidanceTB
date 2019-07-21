@@ -150,5 +150,5 @@ def activateRecognition(yoloRep, confidence, threshold):
                                             0.5, color, 2)
                 # show the output image
                 cv2.imwrite("prediction.png", image)
-                cv2.imshow('pred', image)
-                key = cv2.waitKey(5)
+                #cv2.imshow('pred', image)
+                #key = cv2.waitKey(5)
