@@ -155,7 +155,7 @@ while nextwaypoint < len(vehicle.commands):
         # check if need to stop tree
         # if treeRecognition.activateRecognitionOnePicture('yolo-custom', 0.1, 0.2):
         print("Stopping vehicle")
-        vehicle.mode = VehicleMode("POSCTL")
+        PX4setMode(MAV_MODE_STABILIZE)
         cmds.clear
         break
 
