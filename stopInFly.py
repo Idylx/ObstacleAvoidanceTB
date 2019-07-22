@@ -5,6 +5,7 @@ import time, sys, argparse, math
 
 
 MAV_MODE_AUTO = 4
+MAV_MODE_STABILIZE = 16
 MAX_LENGTH = 30
 GO_SWITCH = False
 
@@ -78,15 +79,14 @@ def listener(vehicle, name, message):
                 GO_SWITCH = True
                 PX4setMode(MAV_MODE_AUTO)
         else:
-                PX4setMode(VehicleMode("POSCTL"))
                 GO_SWITCH = False
+                PX4setMode(MAV_MODE_STABILIZE)
 
 
 print("wait for switch")
 while not GO_SWITCH:
        print(".")
        time.sleep(1)
-cd
 
 
 print("mission switch detected")
