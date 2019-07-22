@@ -6,6 +6,7 @@ import time, sys, argparse, math
 
 MAV_MODE_AUTO = 4
 MAX_LENGTH = 30
+GO_SWITCH = False
 
 try:
     # Connect to the Vehicle
@@ -37,8 +38,7 @@ print
 " System status: %s" % vehicle.system_status.state
 print
 " GPS: %s" % vehicle.gps_0
-print
-" Alt: %s" % vehicle.location.global_relative_frame.al
+
 
 
 def PX4setMode(mavMode):
@@ -69,9 +69,25 @@ def get_location_offset_meters(original_location, dNorth, dEast, alt):
     newlon = original_location.lon + (dLon * 180/math.pi)
     return LocationGlobal(newlat, newlon,original_location.alt+alt)
 
-while  vehicle.channels['12'] > 1500:
-        # Hover for 10 seconds
-        time.sleep(1)
+
+
+@vehicle.on_message('RC_CHANNELS')
+def listener(vehicle, name, message):
+        global GO_SWITCH
+        if message.chan12_raw > 1500:
+                GO_SWITCH = True
+                PX4setMode(MAV_MODE_AUTO)
+        else:
+                PX4setMode(VehicleMode("POSCTL"))
+                GO_SWITCH = False
+
+
+print("wait for switch")
+while not GO_SWITCH:
+       print(".")
+       time.sleep(1)
+cd
+
 
 print("mission switch detected")
 
@@ -88,7 +104,7 @@ relativePosiition = vehicle.location.global_relative_frame
 
 #for every meter to west
 for endPoint in range(0, MAX_LENGTH):
-    wp = get_location_offset_meters(relativePosiition, 0, -endPoint, 0);
+    wp = get_location_offset_meters(relativePosiition, 0, -endPoint, 0)
     cmd = Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 1, 0,
                   0, 0, 0, wp.lat, wp.lon, wp.alt)
     cmds.add(cmd)
