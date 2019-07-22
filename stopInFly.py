@@ -100,11 +100,12 @@ time.sleep(1)
 cmds = vehicle.commands
 cmds.clear()
 
-relativePosiition = vehicle.location.global_relative_frame
+relativePosition = vehicle.location.global_relative_frame
 
+print(relativePosition)
 #for every meter to west
 for endPoint in range(0, MAX_LENGTH):
-    wp = get_location_offset_meters(relativePosiition, 0, -endPoint, 0)
+    wp = get_location_offset_meters(relativePosition, 0, endPoint, 0)
     cmd = Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0, 1, 0,
                   0, 0, 0, wp.lat, wp.lon, wp.alt)
     cmds.add(cmd)
