@@ -151,6 +151,7 @@ cpt = 0
 # monitor mission execution
 nextwaypoint = vehicle.commands.next
 while nextwaypoint < len(vehicle.commands):
+    print(nextwaypoint)
     if cpt > 6:
         # check if need to stop tree
         # if treeRecognition.activateRecognitionOnePicture('yolo-custom', 0.1, 0.2):
