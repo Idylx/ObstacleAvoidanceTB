@@ -22,7 +22,7 @@ def main():
     #if vehicle.mode.name == "OFFBOARD":
 
     droneHelper.derive(vehicle)
-    if treeRecognition.activateRecognition(args["yolo"], args["confidence"], args["threshold"]) == "STOP":
+    if treeRecognition.activateRecognitionFilm(args["yolo"], args["confidence"], args["threshold"]) == "STOP":
         droneHelper.stop(vehicle)
 
     # About to exit script

@@ -1,15 +1,14 @@
 from dronekit import connect, Command, LocationGlobal, VehicleMode
 from pymavlink import mavutil
-import treeRecognition
 import time, sys, argparse, math
 
 GO_SWITCH = False
 
 try:
     # Connect to the Vehicle
-    print("Connecting to vehicle on: ttyAMA0 ")
+    print("Connecting to vehicle on: ttyS0 ")
     # Connect to the Vehicle (in this case a UDP endpoint)
-    vehicle = connect('/dev/ttyAMA0', wait_ready=True, baud=921600)
+    vehicle = connect('/dev/ttyS0', wait_ready=True, baud=921600)
     # Bad TCP connection
 except socket.error:
     print("No vehicle exists!")
@@ -40,15 +39,16 @@ def listener(vehicle, name, message):
     else:
         GO_SWITCH = False
 
+while True:
+    print("wait for switch")
+    while not GO_SWITCH:
+        print(".")
+        time.sleep(1)
 
-print("wait for switch")
-while not GO_SWITCH:
-    print(".")
-    time.sleep(1)
+    print("LOITER switch detected")
 
-print("LOITER switch detected")
-
-vehicle.mode = VehicleMode("LOITER")
-print("Loiter mode success")
-time.sleep(20)
-print("quit....")
+    vehicle.mode = VehicleMode("LOITER")
+    print("Loiter mode success")
+    time.sleep(20)
+    GO_SWITCH = False
+    print("quit....")

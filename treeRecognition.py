@@ -28,11 +28,6 @@ _confidence = 0
 _threshold = 0
 
 
-
-""" setup the options of the recognitiom"""
-def setupArgument():
-        return None
-
 # get image function
 def get_image():
     return _camera.read()[1]
@@ -272,7 +267,7 @@ def activateRecognitionFilm(yoloRep, confidence, threshold):
                                         print("SOMETHING FOUND STOP")
                                         # show the output image
                                         cv2.imwrite("predictionSTOP.png", image)
-                                        return "STOP"
+                                        return True
 
 
                 #cv2.imshow('pred', image)
